@@ -105,7 +105,6 @@ public class EspetaculosControllerTest {
 	public void deveReservarSeASessaoTemIngressosSuficientes() throws Exception {
 		Espetaculo espetaculo = new Espetaculo();
 		espetaculo.setTipo(TipoDeEspetaculo.TEATRO);
-
 		Sessao sessao = new Sessao();
 		sessao.setPreco(new BigDecimal("10.00"));
 		sessao.setTotalIngressos(5);

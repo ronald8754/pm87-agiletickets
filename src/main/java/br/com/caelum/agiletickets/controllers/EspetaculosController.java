@@ -36,7 +36,6 @@ public class EspetaculosController {
 	private final Agenda agenda;
 	private final DiretorioDeEstabelecimentos estabelecimentos;
 
-
 	public EspetaculosController(Result result, Validator validator, Agenda agenda, DiretorioDeEstabelecimentos estabelecimentos) {
 		this.result = result;
 		this.validator = validator;
@@ -124,7 +123,9 @@ public class EspetaculosController {
 		// em caso de erro, redireciona para a lista de sessao
 		validator.onErrorRedirectTo(this).sessao(sessao.getId());
 
-		BigDecimal precoTotal = CalculadoraDePrecos.calcularPrecosDeEspetaculos(sessao, quantidade);
+
+		BigDecimal precoTotal = CalculadoraDePrecos.calculaPrecosEspetaculos(sessao, quantidade);
+
 
 		sessao.reserva(quantidade);
 
@@ -142,6 +143,4 @@ public class EspetaculosController {
 		return espetaculo;
 	}
 
-
-	
 }

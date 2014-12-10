@@ -3,7 +3,17 @@ package br.com.caelum.agiletickets.models;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+import java.util.Locale;
+
+import junit.framework.Assert;
+
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
+
 
 public class EspetaculoTest {
 
@@ -16,6 +26,25 @@ public class EspetaculoTest {
 		ivete.getSessoes().add(sessaoComIngressosSobrando(2));
 
 		assertTrue(ivete.Vagas(5));
+	}
+	
+	@Test
+	public void criarSessoesDiariasNumPeriodo() {
+		Espetaculo espetaculo = new Espetaculo();
+		LocalDate inicio  = new LocalDate(2015, 01, 10);
+		LocalDate fim     = new LocalDate(2015, 01, 20);
+		LocalTime horario = new LocalTime(19,0,0);
+		Sessao sessaoAux;
+		int diaInicio =inicio.getDayOfMonth();
+		List<Sessao> sessoes = espetaculo.criaSessoes(inicio, fim, horario, Periodicidade.DIARIA);
+		
+		Assert.assertEquals(11,sessoes.size());
+		
+		for(int i = 0;i<sessoes.size();i++)
+		{
+			sessaoAux = sessoes.get(i);
+			Assert.assertEquals(inicio.plusDays(i).toString(DateTimeFormat.shortDate().withLocale(new Locale("pt", "BR"))),sessaoAux.getDia());
+		}
 	}
 
 	@Test
