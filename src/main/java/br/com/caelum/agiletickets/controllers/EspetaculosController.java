@@ -107,14 +107,20 @@ public class EspetaculosController {
 			return;
 		}
 
-		if (quantidade < 1) {
-			validator.add(new ValidationMessage("Você deve escolher um lugar ou mais", ""));
+		if (quantidade == null) {
+			validator.add(new ValidationMessage(
+					"Você deve escolher um lugar ou mais", ""));
 		}
-
-		if (!sessao.podeReservar(quantidade)) {
-			validator.add(new ValidationMessage("Não existem ingressos disponíveis", ""));
+		else {
+			if (quantidade < 1) {
+				validator.add(new ValidationMessage(
+						"Você deve escolher um lugar ou mais", ""));
+			}
+			if (!sessao.podeReservar(quantidade)) {
+				validator.add(new ValidationMessage(
+						"Não existem ingressos disponíveis", ""));
+			}
 		}
-
 		// em caso de erro, redireciona para a lista de sessao
 		validator.onErrorRedirectTo(this).sessao(sessao.getId());
 
