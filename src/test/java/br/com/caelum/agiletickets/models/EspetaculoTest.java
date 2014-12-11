@@ -20,7 +20,7 @@ public class EspetaculoTest {
 	@Test
 	public void deveInformarSeEhPossivelReservarAQuantidadeDeIngressosDentroDeQualquerDasSessoes() {
 		Espetaculo ivete = new Espetaculo();
-
+		//teste
 		ivete.getSessoes().add(sessaoComIngressosSobrando(1));
 		ivete.getSessoes().add(sessaoComIngressosSobrando(3));
 		ivete.getSessoes().add(sessaoComIngressosSobrando(2));
